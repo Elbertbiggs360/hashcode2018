@@ -5,8 +5,6 @@ from vehicle import Vehicle
 def main():
     readWrite = ReadWrite()
     ride_description = readWrite.read_file("./resources/b_should_be_easy.in")
-    # for ride in ride_description:
-    #     print( ride.start )
 
     moved_vehicles = []
     time = 0
@@ -14,7 +12,7 @@ def main():
     initial_vehicle_time = 0
 
     for ride in ride_description:
-        print (distance(ride.ride, initial_vehicle_position))
+        print (distance(ride.ride_start, initial_vehicle_position))
 
 
 def distance(ride_position, vehicle_position):
