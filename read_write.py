@@ -1,4 +1,4 @@
-from ride_description import RideDescription
+from rides import Ride
 
 class ReadWrite(object):
 
@@ -6,7 +6,7 @@ class ReadWrite(object):
         fo = open(file_name, "r")
         lines = fo.readlines()
         i = 0
-        self.ride_description = []
+        self.rides = []
         for line in lines:
             auto_increment_id = 0
             if(i == 0):
@@ -19,19 +19,11 @@ class ReadWrite(object):
                 self.steps = int(p[5])
             else:
                 p = line.split(' ')
-                self.ride_description.append(
-                    RideDescription(
-                        auto_increment_id, 
-                        int(p[0]), 
-                        int(p[1]), 
-                        int(p[2]), 
-                        int(p[3]), 
-                        int(p[4]), 
-                        int(p[5])
-                    )
-                )
+                ride = Ride(int(p[0]), int(p[1]), int(p[2]), int(p[3]), int(p[4]), int(p[5]))
+                ride.setId(auto_increment_id)
+                self.rides.append(ride)
             i += 1
 
-        self.ride_description = sorted(self.ride_description, key=lambda ride_description: ride_description.start)
-        return self.ride_description
+        self.rides = sorted(self.rides, key=lambda rides: rides.start)
+        return self.rides
 
